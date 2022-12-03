@@ -20,9 +20,9 @@ permissions:
   actions: read
   contents: read
 
-# env:
+env:
   # Path to the solution file relative to the root of the project.
-  # SOLUTION_FILE_PATH: ./Security/Security.sln
+  JTEST_DIRECTORY: 'C:/tools/parasoft_jtest_2022.1.0_win32_x86_64/jtest'
 
 jobs:
   build:
@@ -33,13 +33,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Generate JSON input file with Gradle
+        run: ./gradlew clean build jtest -I ${{JTEST_DIRECTORY}}/integration/gradle/init.gradle "-Djtest.skip=true"
+  
       - name: Run Parasoft Jtest
+        id: jtest
       # You may pin to the exact commit or the version.
       # uses: parasoft/run-jtest-action@e0fc5eba99b1236c2c04d7cbfd8d67808bc8bf9e
         uses: parasoft/run-jtest-action@1.0.0
         with:
           # Installation folder of Parasoft Jtest. If not specified, the cpptestcli executable must be added to PATH.
-          installDir: 'C:/tools/parasoft_jtest_2022.1.0_win32_x86_64/jtest'
+          installDir: ${{JTEST_DIRECTORY}}
           # Working directory for running Jtest.
           # workingDir: # optional, default is ${{ github.workspace }}
           # Test configuration to be used for code analysis.
