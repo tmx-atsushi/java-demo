@@ -47,7 +47,7 @@ jobs:
           # Working directory for running Jtest.
           # workingDir: # optional, default is ${{ github.workspace }}
           # Test configuration to be used for code analysis.
-          testConfig: 'builtin://CWE Top 25 2019' # optional, default is builtin://Recommended Rules
+          testConfig: 'builtin://CWE Top 25 2021' # optional, default is builtin://Recommended Rules
           # Output folder for reports from code analysis.
           # reportDir: # optional, default is reports
           # Format of reports from code analysis.
