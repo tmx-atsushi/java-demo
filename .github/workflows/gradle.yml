@@ -35,7 +35,7 @@ jobs:
 
       - name: Generate JSON input file with Gradle
         run: ./gradlew.bat clean build jtest -I ${{env.JTEST_DIRECTORY}}/integration/gradle/init.gradle "-Djtest.skip=true"
-            echo JTEST_DIRECTORY is {{$env.JTEST_DIRECTORY}}
+            echo "JTEST_DIRECTORY is ${{env.JTEST_DIRECTORY}}"
   
       - name: Run Parasoft Jtest
         id: jtest
