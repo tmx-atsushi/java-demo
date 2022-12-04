@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Generate JSON input file with Gradle
-        run: ./gradlew.bat clean build jtest -I ${JTEST_DIRECTORY}/integration/gradle/init.gradle "-Djtest.skip=true"
+        run: ./gradlew.bat clean build jtest -I ${env.JTEST_DIRECTORY}/integration/gradle/init.gradle "-Djtest.skip=true"
   
       - name: Run Parasoft Jtest
         id: jtest
@@ -43,7 +43,7 @@ jobs:
         uses: parasoft/run-jtest-action@1.0.0
         with:
           # Installation folder of Parasoft Jtest. If not specified, the cpptestcli executable must be added to PATH.
-          installDir: ${JTEST_DIRECTORY}
+          installDir: ${env.JTEST_DIRECTORY}
           # Working directory for running Jtest.
           # workingDir: # optional, default is ${{ github.workspace }}
           # Test configuration to be used for code analysis.
